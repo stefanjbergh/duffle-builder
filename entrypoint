@@ -1,0 +1,12 @@
+#!/bin/bash
+#If directory doesn't exist, clone in source code
+if [  ! -d $GOPATH/src/github.com/deislabs/duffle ]; then
+    echo "Duffle source code not found, cloning from github"
+    git clone https://github.com/deislabs/duffle.git
+else
+    echo "found duffle src already present, no need to clone from github"
+fi
+
+
+make -C duffle bootstrap build
+cp $GOPATH/src/github.com/deislabs/duffle/bin/duffle /output/duffle
